@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv';
 import * as cors from 'cors';
 import { join } from 'path';
 import { ValidationPipe } from '@nestjs/common';
+import { ValidationExceptionFilter } from './filters/validation-exception.filter';
 
 async function bootstrap() {
 	dotenv.config({ path: join(__dirname, '../../../.env') });
@@ -20,6 +21,7 @@ async function bootstrap() {
 			transform: true,
 		}),
 	);
+	app.useGlobalFilters(new ValidationExceptionFilter());
 	await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
