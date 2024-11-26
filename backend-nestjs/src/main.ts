@@ -5,6 +5,7 @@ import * as cors from 'cors';
 import { join } from 'path';
 import { ValidationPipe } from '@nestjs/common';
 import { ValidationExceptionFilter } from './filters/validation-exception.filter';
+import { seedDatabase } from '../prisma/seedDatabase';
 
 async function bootstrap() {
 	dotenv.config({ path: join(__dirname, '../../../.env') });
@@ -14,6 +15,7 @@ async function bootstrap() {
 			origin: ['http://localhost:80', 'http://localhost'],
 		}),
 	);
+	app.useGlobalFilters(new ValidationExceptionFilter());
 	app.useGlobalPipes(
 		new ValidationPipe({
 			whitelist: true,
@@ -21,7 +23,7 @@ async function bootstrap() {
 			transform: true,
 		}),
 	);
-	app.useGlobalFilters(new ValidationExceptionFilter());
+	await seedDatabase();
 	await app.listen(8080);
 }
 bootstrap();

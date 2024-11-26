@@ -47,4 +47,3 @@ export const seedDatabase = async () => {
 		await prisma.$disconnect();
 	}
 };
-seedDatabase();
