@@ -4,6 +4,7 @@ import { RideRepository } from './ride.repository';
 import { PrismaService } from '../../../common/services/prisma.service';
 import { RouteUtils } from 'src/utils/route-utils';
 import { DriverUtils } from 'src/utils/driver-utils';
+import { ConfirmRideDto } from '../dto/confirm-ride.dto';
 
 @Injectable()
 export class RidePrismaRepository implements RideRepository {
@@ -23,6 +24,34 @@ export class RidePrismaRepository implements RideRepository {
 					'The data provided in the request body is invalid',
 			});
 		}
+	}
+
+	async confirmRide(
+		confirmRideDto: ConfirmRideDto,
+	): Promise<{ success: boolean }> {
+		const driver = await this.driverUtils.findDriverById(
+			confirmRideDto.driver.id,
+		);
+		this.driverUtils.validateDistanceToDriver(
+			driver.min_distance,
+			confirmRideDto.distance,
+		);
+		await this.createRide(confirmRideDto);
+		return { success: true };
+	}
+
+	private async createRide(confirmRideDto: ConfirmRideDto) {
+		await this.prisma.ride.create({
+			data: {
+				customer_id: confirmRideDto.customer_id,
+				origin: confirmRideDto.origin,
+				destination: confirmRideDto.destination,
+				distance: confirmRideDto.distance,
+				duration: confirmRideDto.duration,
+				value: confirmRideDto.value,
+				driverId: confirmRideDto.driver.id,
+			},
+		});
 	}
 
 	private async calculateRideDetails(

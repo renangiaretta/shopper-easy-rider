@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { CustomNotAcceptableException } from 'src/common/exceptions/custom-not-acceptable.exception';
+import { CustomNotFoundException } from 'src/common/exceptions/custom-not-found.exception';
 import { PrismaService } from 'src/common/services/prisma.service';
 import { IDriver } from 'src/interfaces/drivers.interface';
 
@@ -25,5 +27,28 @@ export class DriverUtils {
 			const { rideFare, min_distance, ...driverData } = driver;
 			return { ...driverData, value: parseFloat(fare.toFixed(2)) };
 		});
+	}
+
+	async findDriverById(driverId: number): Promise<any> {
+		const driver = await this.prisma.driver.findUnique({
+			where: { id: driverId },
+		});
+		if (!driver) {
+			throw new CustomNotFoundException(
+				'Driver not found',
+				'DRIVER_NOT_FOUND',
+			);
+		}
+		return driver;
+	}
+
+	validateDistanceToDriver(minDistance: number, distance: number): void {
+		const validDistance = minDistance <= distance / 1000;
+		if (!validDistance) {
+			throw new CustomNotAcceptableException(
+				'Invalid distance to driver',
+				'INVALID_DISTANCE',
+			);
+		}
 	}
 }
