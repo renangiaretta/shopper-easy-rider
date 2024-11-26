@@ -22,6 +22,6 @@ async function bootstrap() {
 		}),
 	);
 	app.useGlobalFilters(new ValidationExceptionFilter());
-	await app.listen(process.env.PORT ?? 3000);
+	await app.listen(8080);
 }
 bootstrap();
