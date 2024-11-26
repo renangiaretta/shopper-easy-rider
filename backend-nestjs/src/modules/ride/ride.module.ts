@@ -7,6 +7,7 @@ import { RideRepository } from './repositories/ride.repository';
 import { PrismaService } from 'src/common/services/prisma.service';
 import { DriverUtils } from 'src/utils/driver-utils';
 import { RouteUtils } from 'src/utils/route-utils';
+import { CustomerUtils } from 'src/utils/customer-utils';
 
 @Module({
 	imports: [HttpModule],
@@ -14,6 +15,7 @@ import { RouteUtils } from 'src/utils/route-utils';
 	providers: [
 		DriverUtils,
 		RouteUtils,
+		CustomerUtils,
 		RideService,
 		PrismaService,
 		{

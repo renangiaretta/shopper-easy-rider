@@ -5,6 +5,8 @@ import { PrismaService } from '../../../common/services/prisma.service';
 import { RouteUtils } from 'src/utils/route-utils';
 import { DriverUtils } from 'src/utils/driver-utils';
 import { ConfirmRideDto } from '../dto/confirm-ride.dto';
+import { CustomerUtils } from 'src/utils/customer-utils';
+import { CustomNotFoundException } from 'src/common/exceptions/custom-not-found.exception';
 
 @Injectable()
 export class RidePrismaRepository implements RideRepository {
@@ -12,6 +14,7 @@ export class RidePrismaRepository implements RideRepository {
 		private readonly prisma: PrismaService,
 		private routeUtils: RouteUtils,
 		private driverUtils: DriverUtils,
+		private customerUtils: CustomerUtils,
 	) {}
 	async estimateRide(estimateRideDto: EstimateRideDto) {
 		try {
@@ -69,5 +72,42 @@ export class RidePrismaRepository implements RideRepository {
 			response,
 			driverOptionsWithFares,
 		);
+	}
+
+	async listCustomerRides(
+		customer_id: string,
+		driver_id?: string,
+	): Promise<any> {
+		await this.customerUtils.ensureCustomerExists(customer_id);
+		if (driver_id) {
+			await this.driverUtils.ensureDriverExists(driver_id);
+		}
+		const rides = await this.getRides(customer_id);
+		return this.filterAndFormatRides(rides, driver_id);
+	}
+
+	private async getRides(customer_id: string) {
+		return await this.prisma.ride.findMany({
+			where: { customer_id },
+			include: { driver: { select: { id: true, name: true } } },
+			orderBy: { date: 'desc' },
+		});
+	}
+
+	private filterAndFormatRides(rides: any[], driver_id?: string) {
+		const formattedRides = rides.map(
+			({ customer_id, driverId, ...ride }) => ({
+				...ride,
+				driver: ride.driver,
+			}),
+		);
+		return {
+			customer_id: rides[0]?.customer_id,
+			rides: driver_id
+				? formattedRides.filter(
+						(ride) => ride.driver?.id === parseInt(driver_id),
+					)
+				: formattedRides,
+		};
 	}
 }

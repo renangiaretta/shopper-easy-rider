@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { CustomBadRequestException } from 'src/common/exceptions/custom-bad-request-exception';
 import { CustomNotAcceptableException } from 'src/common/exceptions/custom-not-acceptable.exception';
 import { CustomNotFoundException } from 'src/common/exceptions/custom-not-found.exception';
 import { PrismaService } from 'src/common/services/prisma.service';
@@ -48,6 +49,24 @@ export class DriverUtils {
 			throw new CustomNotAcceptableException(
 				'Invalid distance to driver',
 				'INVALID_DISTANCE',
+			);
+		}
+	}
+
+	async ensureDriverExists(driver_id: string): Promise<void> {
+		if (isNaN(parseInt(driver_id))) {
+			throw new CustomBadRequestException(
+				'Invalid driver',
+				'INVALID_DRIVER',
+			);
+		}
+		const driverExists = await this.prisma.driver.findUnique({
+			where: { id: parseInt(driver_id) },
+		});
+		if (!driverExists) {
+			throw new CustomBadRequestException(
+				'Invalid driver',
+				'INVALID_DRIVER',
 			);
 		}
 	}

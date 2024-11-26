@@ -13,4 +13,11 @@ export class RideService {
 	async confirmRide(confirmRideDto: ConfirmRideDto) {
 		return await this.rideRepository.confirmRide(confirmRideDto);
 	}
+
+	async listCustomerRides(customer_id: string, driverId: string) {
+		return await this.rideRepository.listCustomerRides(
+			customer_id,
+			driverId,
+		);
+	}
 }
