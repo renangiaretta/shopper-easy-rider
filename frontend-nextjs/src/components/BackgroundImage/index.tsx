@@ -1,5 +1,5 @@
 'use client'
-import { Link } from 'react-scroll';
+import Link from 'next/link';
 import styles from './styles.module.sass';
 
 interface BackgroundImageProps {
@@ -10,16 +10,14 @@ interface BackgroundImageProps {
 }
 const BackgroundImage: React.FC<BackgroundImageProps>
     = ({ title, subtitle, linkText, linkTarget }: BackgroundImageProps): JSX.Element => {
-        
+
         return (
             <div className={styles['background-image-container']}>
                 <div className={styles['content-overlay']}>
                     <h1 className={styles['title']}>{title}</h1>
                     <p className={styles['subtitle']}>{subtitle}</p>
                     <Link
-                        to={linkTarget}
-                        smooth={true}
-                        duration={500}
+                        href={`#${linkTarget}`}
                         className={styles['action-link']}>
                         {linkText}
                     </Link>

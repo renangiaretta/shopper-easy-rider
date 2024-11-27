@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import styles from './styles.module.sass'
 import Header from "@/components/Header";
 import './../scss/main.sass'
+import { StoreWrapper } from "@/store/StoreWrapper";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body>
-        <Header />
-        {children}
+        <StoreWrapper>
+          <Header />
+          {children}
+        </StoreWrapper>
       </body>
-    </html>
+    </html >
   );
 }

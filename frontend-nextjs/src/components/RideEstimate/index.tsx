@@ -1,3 +1,4 @@
+'use client'
 import styles from './styles.module.sass'
 import BaseButton from '../BaseButton'
 import BaseInput from '../BaseInput'
@@ -6,23 +7,23 @@ import { FieldValues, useForm } from 'react-hook-form'
 import { api } from '../../services/api.service'
 import { useState } from 'react'
 import { estimateRideSchema } from '../../schemas/estimate-ride.schema'
-import { zodResolver } from '@hookform/resolvers/zod/src/zod.js'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../store'
 import { driversActions } from '../../store/drivers/drivers-slice'
 import { ridesActions } from '../../store/rides/rides-slice'
 import SectionContainer from '../SectionContainer'
-import { useNavigate } from 'react-router-dom'
 import { animateScroll as scroll } from 'react-scroll'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 const RideEstimate: React.FC = (): JSX.Element => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(estimateRideSchema)
     });
+    const router = useRouter();
     const dispatch = useDispatch<AppDispatch>();
     const [loading, setLoading] = useState(false)
-    const navigate = useNavigate()
 
     const estimateRoute = async (data: FieldValues) => {
         const additionalData = {
@@ -37,7 +38,7 @@ const RideEstimate: React.FC = (): JSX.Element => {
             dispatch(ridesActions.estimatedRide(res.data))
             dispatch(ridesActions.additionalRideData(additionalData))
             scroll.scrollToTop()
-            navigate('/ride-options')
+            router.push('/ride-options')
         } catch (error) {
             console.error(error)
             toast.error('Não foi possível realizar a solicitação. Verifique os dados e tente novamente', {
@@ -52,6 +53,7 @@ const RideEstimate: React.FC = (): JSX.Element => {
     return (
         <SectionContainer>
             <form
+                id='ride-estimate'
                 onSubmit={handleSubmit(estimateRoute)}
                 className={styles['ride-req-form']}>
                 <SectionTitle
