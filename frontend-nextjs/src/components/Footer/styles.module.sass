@@ -1,0 +1,43 @@
+.footer-container
+    display: flex
+    flex-direction: column
+    background-color: #000
+    color: #fff
+    font-family: Arial, sans-serif
+    padding: 20px 0
+    text-align: center
+
+.footer-content
+    display: flex
+    justify-content: center
+    flex-wrap: wrap
+    margin-bottom: 10px
+
+.footer-link
+    font-size: 1.2rem
+    color: #fff
+    text-decoration: none
+    margin: 0 15px
+    &:hover
+        text-decoration: underline
+
+.footer-bottom
+    display: flex
+    flex-direction: column
+    gap: 0.2rem
+
+@media screen and ( max-width: 680px )
+    .footer-link
+        font-size: 1rem
+
+@media screen and ( max-width: 400px )
+    .footer-content
+        display: grid
+        grid-template-columns: 1fr 1fr
+        gap: 1rem
+
+@media screen and ( min-width: 1920px )
+    .footer-link
+        font-size: 2rem
+    .footer-copyright
+        font-size: 1.5rem
