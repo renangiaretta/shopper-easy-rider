@@ -1,0 +1,48 @@
+@use 'abstracts' as *
+    
+:root
+    font-size: 60%
+
+@media (min-width: 700px)
+:root
+    font-size: 62.5%
+
+*
+    margin: 0
+    padding: 0
+    outline: 0
+    box-sizing: border-box
+
+body,
+html
+    overflow-x: hidden
+    width: 100vw
+    min-height: 100vh
+    font-family: $text-font-stack
+
+body
+    background: linear-gradient(180deg, $color-green-200 0%, $color-green-100 60%)
+    background-attachment: fixed
+    -webkit-font-smoothing: antialiased
+    overflow-x: hidden
+    display: flex
+    flex-direction: column
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong
+    font-weight: 600
+
+button
+    cursor: pointer
+
+a
+    text-decoration: none
+
+html
+    -ms-touch-action: manipulation
+    touch-action: manipulation
