@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import styles from './styles.module.sass'
 import Header from "@/components/Header";
 import './../scss/main.sass'
-import BackgroundImage from "@/components/BackgroundImage";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,12 +18,6 @@ export default function RootLayout({
     <html lang="pt-br">
       <body>
         <Header />
-        <BackgroundImage
-          title='Solicite uma viagem!'
-          subtitle='Sua aventura começa com um simples pedido. Prepare-se!'
-          linkText='Começar agora'
-          linkTarget='ride-request'
-        />
         {children}
       </body>
     </html>
