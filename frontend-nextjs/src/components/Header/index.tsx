@@ -10,7 +10,7 @@ const Header: React.FC = (): JSX.Element => {
                 <Link className={styles['header-logo-wrapper']} href={'/'}>
                     <Image src={logo} alt="logo" width={180} height={60} style={{ borderRadius: '40px' }} />
                 </Link>
-                <Link className={styles['header-link-text']} href={'/ride-history'}>Histórico de viagens</Link>
+                <Link className={styles['header-link-text']} href={'/historico-de-viagens'}>Histórico de viagens</Link>
                 <Link className={styles['header-link']} href={'/'}>Início</Link>
             </nav>
         </header>
