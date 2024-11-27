@@ -1,10 +1,10 @@
 import MainComponent from '@/components/MainComponent';
-import RideOptions from '@/components/RideOptions';
+import RideHistory from '@/components/RideHistory';
 
 export default function RideHistoryPage() {
     return (
         <MainComponent>
-            <></>
+            <RideHistory />
         </MainComponent>
     );
 }

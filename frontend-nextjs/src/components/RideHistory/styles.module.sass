@@ -1,0 +1,45 @@
+.ride-history-wrapper
+    display: flex
+    flex-direction: column
+    width: 90%
+    gap: 2rem
+    align-items: center
+    margin-top: 6rem
+    min-height: 100vh
+    animation-duration: 1s
+    animation-name: slidein
+    min-height: 100vh
+
+
+.ride-history-form
+    display: flex
+    gap: 1rem
+    flex-direction: column
+
+.ride-history-inputs-wrapper
+    display: grid
+    grid-template-columns: 1fr 1fr
+
+.ride-history-list-container
+    display: flex
+    flex-direction: column
+    width: 100%
+    gap: 2rem
+    justify-content: space-around
+    padding: 4rem 1rem
+
+@keyframes slidein
+    from
+        opacity: 0
+    to
+        opacity: 1
+
+@media screen and ( max-width: 680px )
+    .ride-history-inputs-wrapper
+        grid-template-columns: 1fr
+    .ride-history-form
+        width: 100%
+
+@media screen and ( min-width: 1920px )
+    .ride-history-wrapper
+        margin-top: 10rem

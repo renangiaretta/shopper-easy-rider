@@ -40,7 +40,7 @@ const DriverCard: React.FC<DriverCardProps> = ({ driver }: DriverCardProps): JSX
         try {
             await api.patch('/confirm', buildRequestData());
             scroll.scrollToTop();
-            router.push('/ride-history');
+            router.push('/historico-de-viagens');
             toast.success('Confirmação realizada com sucesso! Tenha uma ótima viagem!', {
                 position: 'bottom-right',
             });
