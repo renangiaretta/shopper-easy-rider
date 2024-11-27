@@ -4,7 +4,8 @@ import Header from "@/components/Header";
 import './../scss/main.sass'
 import { StoreWrapper } from "@/store/StoreWrapper";
 import Footer from "@/components/Footer";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata: Metadata = {
   title: "Easy Rider",
@@ -22,7 +23,8 @@ export default function RootLayout({
       <body>
         <StoreWrapper>
           <Header />
-          {children}
+          <ToastContainer />
+            {children}
           <Footer />
         </StoreWrapper>
       </body>
