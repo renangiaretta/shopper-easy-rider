@@ -38,7 +38,7 @@ const RideEstimate: React.FC = (): JSX.Element => {
             dispatch(ridesActions.estimatedRide(res.data))
             dispatch(ridesActions.additionalRideData(additionalData))
             scroll.scrollToTop()
-            router.push('/ride-options')
+            router.push('/opcoes-de-viagem')
         } catch (error) {
             console.error(error)
             toast.error('Não foi possível realizar a solicitação. Verifique os dados e tente novamente', {
