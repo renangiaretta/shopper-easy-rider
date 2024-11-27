@@ -1,0 +1,55 @@
+.spinner-container
+    display: flex
+    position: relative
+    z-index: 1
+    width: 100%
+    height: 100%
+    justify-content: center
+    align-items: center
+
+.spinner
+    display: flex
+    position: absolute
+    top: -1.5rem
+    z-index: 999
+    animation: spin 1s linear infinite
+
+.red
+    color: red
+
+.green
+    color: green
+
+.blue
+    color: blue
+
+.blue2
+    color: #4A90E2
+
+.ltblue
+    color: lightblue
+
+.purple
+    color: purple
+
+.black
+    color: black
+
+.small
+    font-size: 0.8rem
+
+.medium
+    font-size: 1.2rem
+    left: 42%
+
+.large
+    font-size: 1.5rem
+    left: 40%
+    top: 40%
+
+@keyframes spin
+    0%
+        transform: rotate(0deg)
+
+    100%
+        transform: rotate(360deg)

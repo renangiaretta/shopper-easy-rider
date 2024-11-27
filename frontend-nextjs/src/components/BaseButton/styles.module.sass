@@ -1,0 +1,56 @@
+
+.base-button-wrapper
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    width: 100%
+
+.small
+    font-weight: 600
+    padding: 0.5rem 1rem
+    border: none
+    border-radius: 6px
+    background-color: #4A90E2
+    color: #FFFFFF
+    cursor: pointer
+    &:hover
+        filter: brightness(1.1)
+        scale: 0.99
+
+.loading
+    pointer-events: none
+
+.hide-text
+    visibility: hidden
+
+.medium
+    font-weight: 600
+    padding: 1rem 2rem
+    border: none
+    border-radius: 6px
+    background-color: #4A90E2
+    color: #FFFFFF
+    cursor: pointer
+    &:hover
+        filter: brightness(1.1)
+        scale: 0.99
+
+.large
+    padding: 2rem 3rem
+    border: none
+    border-radius: 12px
+    background-color: #242424
+    color: #FFFFFF
+    font-size: 1.6rem
+    font-weight: 600
+    cursor: pointer
+    transition: background-color 0.2s ease-in-out
+    &:hover
+        background-color: #3498db
+
+@media screen and ( max-width: 680px )
+    .large
+        font-size: 1.4rem
+        padding: 1.8rem 3rem
+    
