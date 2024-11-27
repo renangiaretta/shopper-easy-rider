@@ -25,7 +25,6 @@ const RideOptions: React.FC = (): JSX.Element => {
                 <div className={styles['ride-options-left-container']}>
                     <SectionTitle text="Trajeto" />
                     <div className={styles['ride-options-map-container']}>
-                        <StaticMap />
                     </div>
                 </div>
 
