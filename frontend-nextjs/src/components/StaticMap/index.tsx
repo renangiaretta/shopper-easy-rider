@@ -1,9 +1,9 @@
 import { useAppSelector } from '../../store';
-import { MapContainer, Polyline, TileLayer } from 'react-leaflet';
+import { Polyline, TileLayer } from 'react-leaflet';
 import { useEffect, useState } from 'react';
 import { decodePolyline, calculateMidpoint, calculateMapZoom } from '../../utils/mapUtils';
 import 'leaflet/dist/leaflet.css';
-import MapMarkerWithPopup from '../MapMarkerWithPopup';
+// import MapMarkerWithPopup from '../MapMarkerWithPopup';
 
 const StaticMap = (): JSX.Element => {
     const ridesData = useAppSelector((state) => state.rides);
