@@ -1,0 +1,70 @@
+.ride-card-container
+    border-radius: 12px
+    overflow: hidden
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25)
+    color: #1f1f1f
+    transition: transform 0.4s ease, box-shadow 0.4s ease
+    cursor: pointer
+    width: 100%
+    margin: 24px auto
+    background-color: #ffffff
+    &:hover
+        transform: scale(1.05)
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35)
+
+.ride-card-header
+    background: #1f1f1f
+    padding: 20px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    h3
+        font-size: 1.5rem
+        margin: 0
+        color: #ffffff
+        font-weight: 700
+    .ride-card-trip-date
+        font-size: 1rem
+        font-weight: 600
+        color: #ffffff
+        opacity: 0.8
+
+.ride-card-driver
+    display: flex
+    align-items: center
+    gap: 1rem
+
+.ride-card-card-body
+    padding: 20px
+    display: flex
+    flex-direction: column
+    gap: 16px
+
+.ride-card-info-group
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 8px 0
+    gap: 2rem
+    border-bottom: 1px solid #4a49493f
+
+    &:last-child
+        border-bottom: none
+
+    strong
+        font-size: 0.95rem
+        text-transform: uppercase
+        font-weight: 600
+
+    span
+        font-size: 1.1rem
+        color: #000000
+        font-weight: 500
+
+.card-footer
+    padding: 16px
+    text-align: center
+    font-size: 1rem
+    font-weight: bold
+    color: #ffffff
+    border-radius: 0 0 12px 12px
