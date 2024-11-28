@@ -18,9 +18,7 @@ export default function RootLayout({
 }>) {
     return (
         <StoreWrapper>
-            <Header />
             {children}
-            <Footer />
         </StoreWrapper>
     );
 }

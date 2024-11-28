@@ -17,14 +17,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        // <html lang="pt-br">
-            // <body>
                 <StoreWrapper>
-                    <Header />
                     {children}
-                    <Footer />
                 </StoreWrapper>
-            // </body>
-        // </html >
     );
 }
