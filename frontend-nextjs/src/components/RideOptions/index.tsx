@@ -1,23 +1,14 @@
-'use client'
-import { useEffect } from 'react'
-import { useAppSelector } from '../../store'
-import DriverCard from '../DriverCard'
-import SectionTitle from '../SectionTitle'
-import styles from './styles.module.sass'
-import StaticMap from '../StaticMap'
-import SectionContainer from '../SectionContainer'
+'use client';
+import { useEffect } from 'react';
+import { useAppSelector } from '../../store';
+import DriverCard from '../DriverCard';
+import SectionTitle from '../SectionTitle';
+import styles from './styles.module.sass';
+import StaticMap from '../StaticMap';
+import SectionContainer from '../SectionContainer';
 
-const RideOptions: React.FC = (): JSX.Element => {
-    const { availableDrivers } = useAppSelector(state => state.drivers)
-
-    useEffect(() => { }, [availableDrivers])
-
-    const renderDriverCards = () => {
-        if (!availableDrivers) return null
-        return availableDrivers.map(driver => (
-            <DriverCard key={driver.id} driver={driver} />
-        ))
-    }
+const RideOptions = () => {
+    const driversData = useAppSelector(state => state.drivers);
 
     return (
         <SectionContainer>
@@ -32,12 +23,18 @@ const RideOptions: React.FC = (): JSX.Element => {
                 <div className={styles['ride-options-right-container']}>
                     <SectionTitle text="Motoristas disponíveis" />
                     <ul className={styles['ride-options-list-container']}>
-                        {renderDriverCards()}
+                        {driversData.availableDrivers && driversData.availableDrivers.length > 0 ? (
+                            driversData.availableDrivers.map(driver => (
+                                <DriverCard key={driver.id} driver={driver} />
+                            ))
+                        ) : (
+                            <div>Carregando...</div> // mensagem de carregamento
+                        )}
                     </ul>
                 </div>
             </div>
         </SectionContainer>
-    )
-}
+    );
+};
 
-export default RideOptions
+export default RideOptions;

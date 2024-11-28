@@ -22,9 +22,9 @@ const StaticMap = (): JSX.Element => {
             &key=${apiKey}`;
     };
 
-    const pathPoints = decodePolyline(estimatedRide.routeResponse.routes[0].polyline.encodedPolyline);
-    const startPoint = formatCoordinates(estimatedRide.origin);
-    const endPoint = formatCoordinates(estimatedRide.destination);
+    const pathPoints = decodePolyline(estimatedRide!.routeResponse.routes[0].polyline.encodedPolyline);
+    const startPoint = formatCoordinates(estimatedRide!.origin);
+    const endPoint = formatCoordinates(estimatedRide!.destination);
 
     const mapUrl = generateMapUrl(pathPoints, startPoint, endPoint);
 

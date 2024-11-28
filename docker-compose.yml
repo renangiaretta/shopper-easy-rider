@@ -25,6 +25,17 @@ services:
     networks:
       - shopper_net
 
+  front:
+    container_name: shopper_front
+    build: ./frontend-nextjs
+    ports:
+      - "80:80"
+    depends_on:
+    - api
+    restart: always
+    networks:
+      - shopper_net
+
 networks:
   shopper_net:
     driver: bridge

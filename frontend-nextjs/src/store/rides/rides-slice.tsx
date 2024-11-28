@@ -2,8 +2,8 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IEstimatedRide } from "../../interfaces/rides.interface";
 
 interface IRidesState {
-    estimatedRide: IEstimatedRide | null;
-    additionalRideData: IAdditionalRideData | null;
+    estimatedRide: IEstimatedRide;
+    additionalRideData: IAdditionalRideData;
 };
 
 interface IAdditionalRideData {
@@ -14,8 +14,8 @@ interface IAdditionalRideData {
 
 
 const initialState: IRidesState = {
-    additionalRideData: null,
-    estimatedRide: null,
+    additionalRideData: {} as IAdditionalRideData,
+    estimatedRide: {} as IEstimatedRide,
 };
 
 
